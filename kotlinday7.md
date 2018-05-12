@@ -568,8 +568,8 @@ dependencies {
 
 1. gradle会自动依赖最高版本的依赖，因为一般情况下高版本依赖兼容低版本依赖 
 
-				    2. 排除依赖性传递
-				    3. 强制指定一个版本
+      2. 排除依赖性传递
+            3. 强制指定一个版本
 
 **需求：** 
 
@@ -630,6 +630,14 @@ configurations.all {
 
 **概念：** 
 
+idea 每一个project相当于eclipse的工作空间，module相当于eclipse的项目
+
+模块开发时的调用通过compile(project: "Core")
+
+allprojects 构建所有的工程
+subprojects 构建子工程
+buildscript 构建环境需要用的插件
+
 **需求：** 
 
 **代码:**
@@ -652,90 +660,6 @@ configurations.all {
 
 **总结**
 
-
-
-
-
-
-
-
-
-Gradle
-很牛逼的构建工具
-构建一切可构建的内容
-
-原始人：
-手动编译，测试， 手动依赖管理，打包， 上传至服务器
-
-手动编译：编译为class文件
-测试：导入测试工具
-导出jar包
-写批处理文件.bat上传至服务器
-
-常见构建工具： Ant Maven Gradle
-
-4.1版本
-
-动态语言和静态语言
-动态语言（python，groovy，javascript）
-静态语言（kotlin，java）
-
-project和task ：
-Project是一个接口
-gradle构建的时候，首先根据配置文件创建一个Project实例，执行project实例
-配置文件中所有代码都会通过task任务的方式插入到project中
-
-application //包含很多常见的任务
-
-task的依赖管理
-特点：依赖具有传递性 ，例如a依赖b， b依赖c ，则a也依赖c
-
-task的生命周期
-1. 扫描时生命周期： 任务在扫描时执行
-2. 执行时生命周期： 任务在执行时执行
-
-如果想让执行不是扫描时的生命周期， 可以用doFirst或doLast
-
-
-Gradle增量更新 ： 
-只更新修改的文件
-指定输入源和输出源， inputs.dir() , inputs.file(), outputs.dir(), outputs.file()
-用法：只要输入源和输出源不改变，则任务不更新，当输入源和输出源改变时任务更新
-
-
-插件plugins
-系统中的插件plugins { }直接使用
-
-三方公司或个人开发了很多的插件，在官方Gradle网站插件市场中找插件
-通过apply { plugin("com.jetbrains.kotlin.jvm")}
-
-
-gradle的依赖管理
-通过gradle自动导入jar包，解决jar包的依赖管理问题
-
-常见仓库
-1. mavenCentral（网络仓库）
-2. Jcenter（网络仓库）
-3. local本地仓库
-4. 文件仓库（不建议使用）
-   5.自定义maven仓库（最常用）
-
-依赖库的坐标：group ， name ， version
-
-依赖冲突：
-1.默认情况下，gradle选择依赖最高版本
-2.如果不想让gradle自己解决可以加上
-configuration.all { 
-	resolutionStrategy {
-
-	}
-
-}
-
-
-Gradle任务扩展
-
-分模块开发
 idea 每一个project相当于工作空间
 module相当于eclipse的项目
 模块开发时的调用通过compile(project: "Core")
@@ -743,11 +667,5 @@ module相当于eclipse的项目
 allprojects 构建所有的工程
 subprojects 构建子工程
 buildscript 构建环境需要用的插件
-
-
-
-
-
-
 
 
